@@ -6,6 +6,7 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { useRuntimeConfig } from '#app';
 
 const isDragging = ref(false);
 const previousMousePosition = { x: 0, y: 0 };
@@ -74,6 +75,9 @@ onMounted(() => {
     // Scene
     scene = new THREE.Scene();
 
+    const config = useRuntimeConfig();
+    const baseURL = config.app.baseURL || '/'; // Fallback to / if undefined, though nuxt.config provides it
+
     // Camera
     const roomWidth = 15; // Increased room width
     const roomHeight = 6;
@@ -98,7 +102,7 @@ onMounted(() => {
     const textureLoader = new THREE.TextureLoader(); // Moved loader instantiation up
 
     const wallpaperTexture = textureLoader.load(
-      '/texture/wallpaper.jpg',
+      `${baseURL}texture/wallpaper.jpg`.replace(/\/\//g, '/'), // Ensure no double slashes
       (texture) => {
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
@@ -111,7 +115,7 @@ onMounted(() => {
     });
 
     const woodFloorTexture = textureLoader.load(
-      '/texture/wood.jpg',
+      `${baseURL}texture/wood.jpg`.replace(/\/\//g, '/'), // Ensure no double slashes
       (texture) => {
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
@@ -186,7 +190,7 @@ onMounted(() => {
     // Load the GLB model
     const loader = new GLTFLoader();
     loader.load(
-      '/model/study+desk.glb', // Corrected path from /model/ to /models/
+      `${baseURL}model/study+desk.glb`.replace(/\/\//g, '/'), // Corrected path to 'models/' and prepended baseURL
       (gltf) => {
         const deskModel = gltf.scene;
         // Adjust model position, scale, rotation as needed
