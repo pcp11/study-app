@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
-import { useSizeStore } from './stores/sizeStore.js'
+import { getSizeStore } from './stores/sizeStore.js'
 
 export default class Renderer {
 	constructor() {
@@ -8,7 +8,7 @@ export default class Renderer {
 		this.canvas = this.experience.canvas
 		this.camera = this.experience.camera
 		this.scene = this.experience.scene
-		this.sizeStore = useSizeStore()
+		this.sizeStore = getSizeStore()
 
 		this.setInstance()
 		this.setResizeLister()

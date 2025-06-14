@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { useSizeStore } from './stores/sizeStore.js'
+import { getSizeStore } from './stores/sizeStore.js'
 
 import Experience from './Experience.js'
 
@@ -8,7 +8,7 @@ export default class Camera {
 	constructor() {
 		this.experience = new Experience()
 		this.canvas = this.experience.canvas
-		this.sizeStore = useSizeStore()
+		this.sizeStore = getSizeStore()
 
 		this.setInstance()
 		this.setControls()
