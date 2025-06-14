@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-
+import { useSizeStore } from './stores/sizeStore.js'
 
 import Experience from './Experience.js'
 
@@ -8,9 +8,7 @@ export default class Camera {
 	constructor() {
 		this.experience = new Experience()
 		this.canvas = this.experience.canvas
-
-
-		this.sizes = { width: window.innerWidth, height: window.innerHeight };
+		this.sizeStore = useSizeStore()
 
 		this.setInstance()
 		this.setControls()
@@ -20,7 +18,7 @@ export default class Camera {
 	setInstance() {
 		this.instance = new THREE.PerspectiveCamera(
 			35,
-			this.sizes.width / this.sizes.height,
+			this.sizeStore.width / this.sizeStore.height,
 			0.1,
 			200
 		);
@@ -34,6 +32,11 @@ export default class Camera {
 	}
 
 	setResizeLister() {
+		// Update camera aspect ratio when size changes
+		window.addEventListener('resize', () => {
+			this.instance.aspect = this.sizeStore.width / this.sizeStore.height
+			this.instance.updateProjectionMatrix()
+		});
 	}
 
 

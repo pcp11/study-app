@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
+import { useSizeStore } from './stores/sizeStore.js'
 
 export default class Renderer {
 	constructor() {
@@ -7,7 +8,7 @@ export default class Renderer {
 		this.canvas = this.experience.canvas
 		this.camera = this.experience.camera
 		this.scene = this.experience.scene
-		this.sizes = { width: window.innerWidth, height: window.innerHeight, pixelRatio: window.devicePixelRatio };
+		this.sizeStore = useSizeStore()
 
 		this.setInstance()
 		this.setResizeLister()
@@ -18,11 +19,16 @@ export default class Renderer {
 			canvas: this.canvas,
 			antialias: true,
 		});
-		this.instance.setSize(this.sizes.width, this.sizes.height);
-		this.instance.setPixelRatio(this.sizes.pixelRatio);
+		this.instance.setSize(this.sizeStore.width, this.sizeStore.height);
+		this.instance.setPixelRatio(this.sizeStore.pixelRatio);
 	}
 
 	setResizeLister() {
+		// Update renderer when size changes
+		window.addEventListener('resize', () => {
+			this.instance.setSize(this.sizeStore.width, this.sizeStore.height);
+			this.instance.setPixelRatio(this.sizeStore.pixelRatio);
+		});
 	}
 
 	loop() {
