@@ -19,14 +19,15 @@ export default class World {
             const wallpaperMaterial = new THREE.MeshStandardMaterial({ map: wallpaperTexture });
             console.log(floorTexture);
 
-            roomModel.children[0].children[0].material = wallpaperMaterial;
-            roomModel.children[0].children[1].material = floorMaterial;
+            console.log(roomModel);
+            roomModel.children[1].children[0].material = wallpaperMaterial;
+            roomModel.children[1].children[1].material = floorMaterial;
 
             this.scene.add(roomModel);
 
             const pointLight = new THREE.PointLight(0xffffff, 10);
             const pointLightHelper = new THREE.PointLightHelper(pointLight);
-            pointLight.position.set(-3, 2, -2);
+            pointLight.position.set(0, 2, -1);
             this.scene.add(pointLight);
             this.scene.add(pointLightHelper);
 
