@@ -52,6 +52,10 @@ export default class Camera {
         cameraFolder.addBinding(this.instance.position, 'x', { min: -20, max: 20, step: 0.1, label: 'Position X' });
         cameraFolder.addBinding(this.instance.position, 'y', { min: -20, max: 20, step: 0.1, label: 'Position Y' });
         cameraFolder.addBinding(this.instance.position, 'z', { min: -20, max: 20, step: 0.1, label: 'Position Z' });
+        cameraFolder.addBinding(this.instance, 'fov', { min: 10, max: 120, step: 1, label: 'FOV' })
+            .on('change', () => {
+                this.instance.updateProjectionMatrix();
+            });
 
         const targetFolder = this.debug.addFolder({ title: 'Camera Target (LookAt)' });
         targetFolder.addBinding(this.controls.target, 'x', { min: -20, max: 20, step: 0.1, label: 'Target X' });
