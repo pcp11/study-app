@@ -16,5 +16,7 @@ export default class Materials {
     mapTextures() {
         this.floorMaterial = new THREE.MeshStandardMaterial({ map: this.resources.items.floorTexture });
         this.wallpaperMaterial = new THREE.MeshStandardMaterial({ map: this.resources.items.wallpaperTexture });
+        this.backgroundMaterial = new THREE.MeshBasicMaterial({ map: this.resources.items.starryNightTexture });
+        console.log(this.resources.items);
     }
 }

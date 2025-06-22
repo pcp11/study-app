@@ -25,7 +25,7 @@ export default class Wardrobe {
             }
         });
 
-        console.log(this.model);
+        //console.log(this.model);
         //this.coreRoom = this.resource.children.find(child => child.name === "Room");
         //this.walls = this.coreRoom.children.find(child => child.name === "Plane002");
         //this.floor = this.coreRoom.children.find(child => child.name === "Plane002_1");

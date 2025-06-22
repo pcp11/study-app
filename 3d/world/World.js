@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Room from './Room.js'
+import Background from './Background.js'
 import Chair from './objects/Chair.js'
 import Desk from './objects/Desk.js'
 import Wardrobe from './objects/Wardrobe.js'
@@ -14,6 +15,7 @@ export default class World {
 
         this.resources.on('ready', () => {
             this.room = new Room();
+            this.background = new Background();
             this.chair = new Chair();
             this.desk = new Desk();
             this.wardrobe = new Wardrobe();

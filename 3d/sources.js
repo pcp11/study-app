@@ -34,4 +34,14 @@ export default [
         type: 'gltf',
         path: 'models/shelf/shelf.gltf',
     },
+    {
+        name: 'starryNightTexture',
+        type: 'texture',
+        path: 'textures/sky-night-star-milky-way-texture-atmosphere-674008-pxhere.com.jpg',
+    },
+    // {
+    //     name: 'backgroundModel',
+    //     type: 'gltf',
+    //     path: 'models/background/background.gltf',
+    // },
 ];

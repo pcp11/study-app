@@ -6,6 +6,7 @@ import World from './world/World.js'
 import Resize from './utils/Resize.js'
 import Resources from './utils/Resources.js';
 import Materials from './world/Materials.js';
+import { Pane } from 'tweakpane';
 
 let instance = null;
 
@@ -16,6 +17,7 @@ export default class Experience {
 
         this.canvas = canvas;
         this.scene = new THREE.Scene()
+        this.debug = new Pane();
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.resources = new Resources();
