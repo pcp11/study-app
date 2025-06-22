@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 import Room from './Room.js'
-import Chair from './Chair.js'
-import Desk from './Desk.js'
+import Chair from './objects/Chair.js'
+import Desk from './objects/Desk.js'
+import Wardrobe from './objects/Wardrobe.js'
+import Shelf from './objects/Shelf.js'
 import Experience from '../Experience.js'
 
 export default class World {
@@ -14,10 +16,12 @@ export default class World {
             this.room = new Room();
             this.chair = new Chair();
             this.desk = new Desk();
+            this.wardrobe = new Wardrobe();
+            this.shelf = new Shelf();
 
             const pointLight = new THREE.PointLight(0xffffff, 6);
             const pointLightHelper = new THREE.PointLightHelper(pointLight);
-            pointLight.position.set(0, 2, -1);
+            pointLight.position.set(0, 2, 0);
 
             pointLight.castShadow = true;
             pointLight.shadow.mapSize.width = 1024;

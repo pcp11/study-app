@@ -1,15 +1,16 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
+
+import Experience from '../../Experience.js'
 
 
-export default class Chair {
+export default class Wardrobe {
     constructor() {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources;
         this.materials = this.experience.materials
 
-        this.resource = this.resources.items.chairModel;
+        this.resource = this.resources.items.wardrobeModel;
 
         this.parseModel();
         this.setMaterials();
@@ -23,6 +24,8 @@ export default class Chair {
                 child.castShadow = true;
             }
         });
+
+        console.log(this.model);
         //this.coreRoom = this.resource.children.find(child => child.name === "Room");
         //this.walls = this.coreRoom.children.find(child => child.name === "Plane002");
         //this.floor = this.coreRoom.children.find(child => child.name === "Plane002_1");

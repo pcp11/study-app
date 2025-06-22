@@ -24,4 +24,14 @@ export default [
         type: 'gltf',
         path: 'models/desk/desk.gltf',
     },
+    {
+        name: 'wardrobeModel',
+        type: 'gltf',
+        path: 'models/wardrobe/wardrobe.gltf',
+    },
+    {
+        name: 'shelfModel',
+        type: 'gltf',
+        path: 'models/shelf/shelf.gltf',
+    },
 ];

@@ -1,15 +1,16 @@
 import * as THREE from 'three'
-import Experience from '../Experience.js'
+
+import Experience from '../../Experience.js'
 
 
-export default class Chair {
+export default class Shelf {
     constructor() {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources;
         this.materials = this.experience.materials
 
-        this.resource = this.resources.items.deskModel;
+        this.resource = this.resources.items.shelfModel;
 
         this.parseModel();
         this.setMaterials();
