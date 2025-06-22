@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { pinia, setupPinia } from './piniaInstance.js'
 
-// Make sure pinia is set up
 setupPinia()
 
 export const useSizeStore = defineStore('size', {
@@ -10,7 +9,7 @@ export const useSizeStore = defineStore('size', {
     height: window.innerHeight,
     pixelRatio: window.devicePixelRatio
   }),
-  
+
   actions: {
     updateSize() {
       this.width = window.innerWidth
@@ -18,14 +17,13 @@ export const useSizeStore = defineStore('size', {
       this.pixelRatio = window.devicePixelRatio
     }
   },
-  
+
   getters: {
     aspectRatio: (state) => state.width / state.height
   }
 })
 
-// Helper function to get the store outside of Vue components
 export function getSizeStore() {
-  setupPinia() // Ensure pinia is ready
+  setupPinia()
   return useSizeStore(pinia)
 }

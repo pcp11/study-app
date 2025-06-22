@@ -13,5 +13,15 @@ export default [
         name: 'wallpaperTexture',
         type: 'texture',
         path: 'textures/floral-embossed-wallpaper1-bl/floral-embossed-wallpaper1_albedo.png',
-    }
+    },
+    {
+        name: 'chairModel',
+        type: 'gltf',
+        path: 'models/chair/chair.gltf',
+    },
+    {
+        name: 'deskModel',
+        type: 'gltf',
+        path: 'models/desk/desk.gltf',
+    },
 ];

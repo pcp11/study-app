@@ -1,5 +1,7 @@
 import * as THREE from 'three'
-
+import Room from './Room.js'
+import Chair from './Chair.js'
+import Desk from './Desk.js'
 import Experience from '../Experience.js'
 
 export default class World {
@@ -9,51 +11,32 @@ export default class World {
         this.resources = this.experience.resources;
 
         this.resources.on('ready', () => {
-            console.log('resources ready');
-            console.log(this.resources.items);
+            this.room = new Room();
+            this.chair = new Chair();
+            this.desk = new Desk();
 
-            const roomModel = this.resources.items.roomModel;
-            const floorTexture = this.resources.items.floorTexture;
-            const floorMaterial = new THREE.MeshStandardMaterial({ map: floorTexture });
-            const wallpaperTexture = this.resources.items.wallpaperTexture;
-            const wallpaperMaterial = new THREE.MeshStandardMaterial({ map: wallpaperTexture });
-            console.log(floorTexture);
-
-            console.log(roomModel);
-            roomModel.children[1].children[0].material = wallpaperMaterial;
-            roomModel.children[1].children[1].material = floorMaterial;
-
-            this.scene.add(roomModel);
-
-            const pointLight = new THREE.PointLight(0xffffff, 10);
+            const pointLight = new THREE.PointLight(0xffffff, 6);
             const pointLightHelper = new THREE.PointLightHelper(pointLight);
             pointLight.position.set(0, 2, -1);
+
+            pointLight.castShadow = true;
+            pointLight.shadow.mapSize.width = 1024;
+            pointLight.shadow.mapSize.height = 1024;
+            pointLight.shadow.radius = 5;
+            pointLight.shadow.bias = -0.005;
+            pointLight.shadow.camera.near = 0.1;
+            pointLight.shadow.camera.far = 16;
+
+            // For debugging the shadow camera frustum:
+            const lightCameraHelper = new THREE.CameraHelper(pointLight.shadow.camera);
+            this.scene.add(lightCameraHelper);
+
             this.scene.add(pointLight);
             this.scene.add(pointLightHelper);
 
-            console.log(this.scene);
         });
-
-
-        //this.setCube()
-        this.loop()
     }
 
-    setCube() {
-
-        this.cubeMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({ color: 0xff0000 })
-        );
-
-        this.scene.add(this.cubeMesh)
-
-    }
-
-
-    loop() {
-
-        //this.cubeMesh.rotation.y += 0.01
-
+    update() {
     }
 }
